@@ -9,8 +9,10 @@ set standup to ""
 
 if today is Monday then
 	log "Handling Monday by including weekend work"
-	set yesterdayNight to (current date) - secondsToday - (48 * 60 * 60)
-	set yesterdayMorning to yesterdayNight - (24 * 60 * 60)
+	set mondayNight to (current date) - secondsToday - (48 * 60 * 60)
+	set mondayMorning to mondayNight - (24 * 60 * 60)
+	set yesterdayMorning to mondayMorning
+	# yesterday night is still correct, we want from Monday morning to last night
 end if
 
 log "*Yesterday*"
