@@ -36,24 +36,36 @@ end tell
 
 log "*Today*"
 set standup to standup & "*Today*
+
 "
-set tskToday to the text returned of (display dialog "What are your goals today?:" default answer "")
-log "- " & tskToday
-set standup to standup & "- " & tskToday & "
+
+set tskToday to the text returned of (display dialog "What are your goals today? (empty to exit):" default answer "")
+set hasDailyTask to false
+repeat while tskToday is not ""
+	log "- " & tskToday
+	set standup to standup & "- " & tskToday & "
 "
+	set tskToday to the text returned of (display dialog "What are your goals today?:" default answer "")
+	set hasDailyTask to true
+end repeat
+
+if hasDailyTask is not true then
+	log "- No tasks today"
+	set standup to standup & "- Not tasks today
+"
+end if
 
 log "*Blockers*"
 set standup to standup & "*Blockers*
 "
 set tskBlockers to the text returned of (display dialog "What are you blocked by?:" default answer "")
 
+# No newlines on this end of the text
 if tskBlockers is not "" then
 	log "- " & tskBlockers
-	set standup to standup & "- " & tskBlockers & "
-"
+	set standup to standup & "- " & tskBlockers
 else
 	log "- None"
-	set standup to standup & "- None
-"
+	set standup to standup & "- None"
 end if
 
