@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+
+osacompile -o daily-standup.applescript ./bin/daily-standup.scpt
