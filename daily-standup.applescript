@@ -47,7 +47,7 @@ set yesterdayMorning to yesterdayNight - (24 * 60 * 60)
 # integer Timestamp of last second of Friday
 set fridayNight to 0
 
-# integer Timestamp of first seconf of Friday
+# integer Timestamp of first second of Friday
 set fridayMorning to 0
 
 # Calculate the weekend timestamps if needed
@@ -71,24 +71,24 @@ end if
 on FetchTasks(startTime, endTime, nl)
 	tell application "Tyme2"
 		GetTaskRecordIDs startDate startTime endDate endTime
-		
 		set standup to ""
 		set fetchedRecords to fetchedTaskRecordIDs as list
 		repeat with recordID in fetchedRecords
 			GetRecordWithID recordID
-			set tskDuration to timedDuration of lastFetchedTaskRecord
-			set tskNote to note of lastFetchedTaskRecord
+			set recordNote to note of lastFetchedTaskRecord
+			set recordTaskID to relatedTaskID of lastFetchedTaskRecord
+			set tsk to the first item of (every task of every project whose id = recordTaskID)
+			set tskName to name of tsk
 			
-			if tskNote is not "" then
-				log "- " & tskNote
-				set standup to standup & "- " & tskNote & nl
+			if recordNote is not "" then
+				set standup to standup & "- " & tskName & ": " & recordNote & nl
 			end if
 		end repeat
 		if standup is "" then
-			log "- None"
 			set standup to standup & "- None" & nl
 		end if
 	end tell
+	return standup
 end FetchTasks
 
 
@@ -99,32 +99,27 @@ end FetchTasks
 # Record Tasks from the preceeding time period
 if today is Monday then
 	# Fetch tasks from Friday during the day
-	log "*Friday*"
 	set standup to standup & "*Friday*" & nl
 	set standup to standup & FetchTasks(yesterdayMorning, yesterdayNight, nl)
 	
 	# Fetch tasks from last second of Friday until last night
 	set weekend to FetchTasks(fridayNight, yesterdayNight, nl)
 	if weekend is not "" then
-		log "*Weekend*"
 		set standup to standup & "*Weekend*" & nl & weekend
 	end if
 else
 	# Simple poll of yesterdays tasks
-	log "*Yesterday*"
 	set standup to standup & "*Yesterday*" & nl
 	set standup to standup & FetchTasks(yesterdayMorning, yesterdayNight, nl)
 end if
 
 # Collect the tasks for today
-log "*Today*"
 set standup to standup & "*Today*" & nl
 
 # Prompt the user for anything they want to accomplish today
 set tskToday to the text returned of (display dialog "What are your goals today? (empty to exit):" default answer "")
 set hasDailyTask to false
 repeat while tskToday is not ""
-	log "- " & tskToday
 	set standup to standup & "- " & tskToday & nl
 	set tskToday to the text returned of (display dialog "What are your goals today?:" default answer "")
 	set hasDailyTask to true
@@ -132,20 +127,19 @@ end repeat
 
 # Account for taking a day off today
 if hasDailyTask is not true then
-	log "- No tasks today"
 	set standup to standup & "- No tasks today" & nl
 end if
 
 # Record any blockers
-log "*Blockers*"
 set standup to standup & "*Blockers*" & nl
 set tskBlockers to the text returned of (display dialog "What are you blocked by?:" default answer "")
 
 # No newlines on this end of the text
 if tskBlockers is not "" then
-	log "- " & tskBlockers
 	set standup to standup & "- " & tskBlockers
 else
-	log "- None"
 	set standup to standup & "- None"
 end if
+
+# Output to the terminal as long as we're running via `osascript`
+log standup

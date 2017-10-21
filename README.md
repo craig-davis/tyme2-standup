@@ -16,7 +16,9 @@ copied to the clipboard.
 * Open the `Script Editor` application in OSX and open the
   `daily-standup.applescript` file.
 * Edit the file
-* Choose `File > Export...` and then choose the `daily-standup.scpt` file and
-  be sure to change the *File Format* to `Script`.
+* Choose `File > Export...` and then choose the `bin/daily-standup.scpt` file
+  and be sure to change the *File Format* to `Script`
+* -*OR*-
+* Run the `compile` script found in this repo
 
 [tyme2]: http://tyme-app.com/
