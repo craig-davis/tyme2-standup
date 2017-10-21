@@ -31,6 +31,9 @@ copied to the clipboard.
 
 * Open the `Script Editor` application in OSX and open the
   `daily-standup.applescript` file.
+* Drag the `Tyme2` application icon onto the `Script Editor` icon in the dock
+  so that you can see the API that the app offers. Also check the reference at
+  [Tyme2 Scripting](https://www.tyme-app.com/scripting2/)
 * Edit the file
 * Choose `File > Export...` and then choose the `bin/daily-standup.scpt` file
   and be sure to change the *File Format* to `Script`
