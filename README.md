@@ -13,12 +13,27 @@ Add the `bin` folder to your path and then run `standup`.
 ```bash
 export PATH="/Users/craig/Projects/tyme2-standup/bin:$PATH"
 ```
-
 This will fetch tasks from your previous day (with special weekend handling) and
 will prompt you for todays tasks. Press enter to stop entering new tasks. It
 will then prompt you about any blockers you're experiencing. Press enter to have
 `none`. Once you've finished with the prompts, the morning standup report will
 be in your clipboard and ready to share.
+
+## Example
+
+```bash
+$ standup
+*Yesterday*
+- PR Review: #1045 Update report overview screen
+- Company Meetings: All Hands Meeting
+- PR Review: #45 Improve sample logo failure message
+- Maintenance: Created #78 to add backoff rate to AWS connection
+*Today*
+- Meet with Steven about CMS integrations
+- Bring work on #7364 for image processing
+*Blockers*
+- None
+```
 
 ## Development
 
