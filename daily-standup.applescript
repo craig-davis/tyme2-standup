@@ -100,7 +100,7 @@ end FetchTasks
 if today is Monday then
 	# Fetch tasks from Friday during the day
 	set standup to standup & "*Friday*" & nl
-	set standup to standup & FetchTasks(yesterdayMorning, yesterdayNight, nl)
+	set standup to standup & FetchTasks(fridayMorning, fridayNight, nl)
 	
 	# Fetch tasks from last second of Friday until last night
 	set weekend to FetchTasks(fridayNight, yesterdayNight, nl)
