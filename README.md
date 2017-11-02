@@ -49,7 +49,7 @@ $ standup
 * Run the `compile` script found in this repo
 
 # Tyme2 Tips
-This helper runs on Tyme2. Using it efficiently is key to liking this system.
+This helper runs on Tyme2. Using Tyme2 efficiently is key to liking this system.
 I've found that setting it up properly is key.
 
 1. Add global hotkeys to start and stop tasks
@@ -75,8 +75,8 @@ sync.
 
 #### 4. Setup projects and tasks
 You are free to setup your projects and tasks however you'd like. Keep in mind
-that the reporter will include the task name in the summary. I have a fairly
-extensive setup. Here's [a preview of my setup](docs/projects.png). Ive found
+that the reporter will include the task name in the summary. I have [a fairly
+extensive setup](docs/projects.png). I've found
 that this works for me and gives me nice charts and reports on the things that
 I've been working on. Tyme2 is a little more aimed at contractors than at
 individuals, so I tend to think of each major project as a client.
