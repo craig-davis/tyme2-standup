@@ -1,4 +1,4 @@
-Tyme2 Daily Standup Report
+Tyme2 Daily Standup Report ![sample ui](docs/sample.png)
 ===============================================================================
 > Generate a morning standup report from [Tyme2][tyme2] using AppleScript
 
@@ -47,5 +47,38 @@ $ standup
   and be sure to change the *File Format* to `Script`
 * -*OR*-
 * Run the `compile` script found in this repo
+
+# Tyme2 Tips
+This helper runs on Tyme2. Using it efficiently is key to liking this system.
+I've found that setting it up properly is key.
+
+1. Add global hotkeys to start and stop tasks
+2. Prompt me for a task note when I start a task
+3. Enable iCloud sync so I can work from several computers or track via my phone
+4. Setup your projects and tasks to match your work
+
+#### 1. Hotkey Preferences
+![Hotkey Preferences](docs/hotkey-preferences.png)<br>
+This allows you to quickly start and stop tasks and record time.
+
+#### 2. General Preferences
+![General Preferences](docs/general-preferences.png)<br>
+This prompts you when you **start** a task. You should start each task with a
+purpose and the things you plan to accomplish. You can add a link to Trello card
+or a GitHub issue.
+
+#### 3. Synchronization
+![Enable iCloud Backup](docs/icloud-sync.png)<br>
+I work from both a desktop and a laptop, and I like being able to make my
+morning report from either machine. This allows all of your devices to stay in
+sync.
+
+#### 4. Setup projects and tasks
+You are free to setup your projects and tasks however you'd like. Keep in mind
+that the reporter will include the task name in the summary. I have a fairly
+extensive setup. Here's [a preview of my setup](docs/projects.png]. Ive found
+that this works for me and gives me nice charts and reports on the things that
+I've been working on. Tyme2 is a little more aimed at contractors than at
+individuals, so I tend to think of each major project as a client.
 
 [tyme2]: http://tyme-app.com/
