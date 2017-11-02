@@ -76,7 +76,7 @@ sync.
 #### 4. Setup projects and tasks
 You are free to setup your projects and tasks however you'd like. Keep in mind
 that the reporter will include the task name in the summary. I have a fairly
-extensive setup. Here's [a preview of my setup](docs/projects.png]. Ive found
+extensive setup. Here's [a preview of my setup](docs/projects.png). Ive found
 that this works for me and gives me nice charts and reports on the things that
 I've been working on. Tyme2 is a little more aimed at contractors than at
 individuals, so I tend to think of each major project as a client.
