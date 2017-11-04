@@ -61,7 +61,34 @@ end if
 ##########################################################################
 
 ##
-# Fetch the tasks for a time perdiod
+# Trim whitespaces from a string
+#
+# http://applescript.bratis-lover.net/library/string/#trimEnd
+#
+# @param string aString String to be trimmed
+#
+# @return string Trimmed of both spaces and newlines at both ends
+on trimEnd(str)
+	local str, whiteSpace
+	try
+		set str to str as string
+		set whiteSpace to {character id 10, return, space, tab}
+		try
+			repeat while str's last character is in whiteSpace
+				set str to str's text 1 thru -2
+			end repeat
+			return str
+		on error number -1728
+			return ""
+		end try
+	on error eMsg number eNum
+		error "Can't trimEnd: " & eMsg number eNum
+	end try
+end trimEnd
+
+
+##
+# Fetch the tasks for a time period
 #
 # @param integer startTime Epoch timestamp for start of period
 # @param integer endTime   Epoch timestamp for end of period
@@ -81,7 +108,7 @@ on FetchTasks(startTime, endTime, nl)
 			set tskName to name of tsk
 			
 			if recordNote is not "" then
-				set standup to standup & "- " & tskName & ": " & recordNote & nl
+				set standup to standup & "- " & tskName & ": " & my trimEnd(recordNote) & nl
 			end if
 		end repeat
 		if standup is "" then
@@ -90,7 +117,6 @@ on FetchTasks(startTime, endTime, nl)
 	end tell
 	return standup
 end FetchTasks
-
 
 ##########################################################################
 # Application Procedural
@@ -104,7 +130,7 @@ if today is Monday then
 	
 	# Fetch tasks from last second of Friday until last night
 	set weekend to FetchTasks(fridayNight, yesterdayNight, nl)
-	if weekend is not "" then
+	if trimEnd(weekend) is not "- None" then
 		set standup to standup & "*Weekend*" & nl & weekend
 	end if
 else
