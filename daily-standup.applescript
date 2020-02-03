@@ -2,7 +2,7 @@
 
 ################################################################################
 # Tyme2 Daily Standup
-# 
+#
 # Read daily task items from Tyme2 application and print them to stdout for a
 # morning report of the previous days activities. On Monday, this will scan for
 # work accomplished over the weekend.
@@ -106,7 +106,7 @@ on FetchTasks(startTime, endTime, nl)
 			set recordTaskID to relatedTaskID of lastFetchedTaskRecord
 			set tsk to the first item of (every task of every project whose id = recordTaskID)
 			set tskName to name of tsk
-			
+
 			if recordNote is not "" then
 				set standup to standup & "- " & tskName & ": " & my trimEnd(recordNote) & nl
 			end if
@@ -127,7 +127,7 @@ if today is Monday then
 	# Fetch tasks from Friday during the day
 	set standup to standup & "*Friday*" & nl
 	set standup to standup & FetchTasks(fridayMorning, fridayNight, nl)
-	
+
 	# Fetch tasks from last second of Friday until last night
 	set weekend to FetchTasks(fridayNight, yesterdayNight, nl)
 	if trimEnd(weekend) is not "- None" then
@@ -162,9 +162,20 @@ set tskBlockers to the text returned of (display dialog "What are you blocked by
 
 # No newlines on this end of the text
 if tskBlockers is not "" then
-	set standup to standup & "- " & tskBlockers
+	set standup to standup & "- " & tskBlockers & nl
 else
-	set standup to standup & "- None"
+	set standup to standup & "- None" & nl
+end if
+
+# Record any upcoming QA work
+set standup to standup & "*Upcoming for QA*" & nl
+set tskQA to the text returned of (display dialog "Anything upcoming for QA?:" default answer "")
+
+# No newlines on this end of the text
+if tskQA is not "" then
+    set standup to standup & "- " & tskQA
+else
+    set standup to standup & "- None"
 end if
 
 # Output to the terminal as long as we're running via `osascript`
