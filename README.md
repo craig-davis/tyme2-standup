@@ -41,7 +41,7 @@ $ standup
   `daily-standup.applescript` file.
 * Drag the `Tyme2` application icon onto the `Script Editor` icon in the dock
   so that you can see the API that the app offers. Also check the reference at
-  [Tyme2 Scripting](https://www.tyme-app.com/scripting2/)
+  [Tyme2 Scripting][scripting]
 * Edit the file
 * Choose `File > Export...` and then choose the `bin/daily-standup.scpt` file
   and be sure to change the *File Format* to `Script`
@@ -82,3 +82,4 @@ I've been working on. Tyme2 is a little more aimed at contractors than at
 individuals, so I tend to think of each major project as a client.
 
 [tyme2]: http://tyme-app.com/
+[scripting]: https://www.tyme-app.com/en/scripting/
